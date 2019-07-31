@@ -26,7 +26,7 @@
 		<div class="form-group">
 			<label for="form-inline-input-1" class="col-md-3 control-label">Tanggal Surat</label>
 			<div class="col-md-9">
-				<input type="text" class="form-control" id="grid-input-1" name="tanggal" placeholder="Tanggal Surat" value="{{ isset($inputdata->tanggal)? $inputdata->tanggal : '' }}">
+				<input placeholder="Tanggal Surat" type="text" class="form-control" id="tanggal" name="tanggal" value="{{ isset($inputdata->tanggal)? $inputdata->tanggal : date('Y/m/d') }} ">
 			</div>
 		</div>
 
@@ -57,8 +57,9 @@
 @section('js')
 <script type="text/javascript">
 	$(function (){
+	$('#tanggal').datepicker({ orientation: "bottom auto", format: "yyyy/mm/dd", todayBtn: "linked"});
       var data = <?= json_encode($jenis); ?>;
-      console.log(data);
+ 
       $("#jenis").select2({
         data:data,
         placeholder : 'Silahkan Pilih Jenis Surat'
