@@ -59,7 +59,7 @@
       <li class="px-nav-item px-nav-dropdown">
         <a href="#"><i class="px-nav-icon ion-clipboard"></i><span class="px-nav-label">Halo, <b>{{session()->get('name')}}</b></span></a>
         <ul class="px-nav-dropdown-menu">
-          <li class="px-nav-item"><a href="/admin/data/pegawai/{{session()->get('nomor')}}"><span class="px-nav-label">Data Diri</span></a></li>
+          <li class="px-nav-item" {{Request ::segment(4) == session()->get('nomor')?'active' : '' }}><a href="/admin/data/pegawai/{{session()->get('nomor')}}"><span class="px-nav-label">Data Diri</span></a></li>
         </ul>
         <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item"><a href="/logout"><span class="px-nav-label">Logout</span></a></li>
