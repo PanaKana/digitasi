@@ -149,14 +149,11 @@ class UserController extends Controller
        
        public function savedatadiri(Request $req, $nim){
               $validasi = $req->validate([
-                     'nim' => 'required',
                      'nama' => 'required',
                      'alamat' => 'required',
-                     'jabatan' => 'required',
                      "jk" => 'required',
                      "telepon" => 'required',
                      "email" => 'required|email',
-                     "status" => 'required',
                      "password" => 'required'
               ]);
 
@@ -168,15 +165,13 @@ class UserController extends Controller
                             "nip" => $req->nim,
                             "nama" => $req->nama,
                             "alamat" => $req->alamat,
-                            "jabatan" => $req->jabatan,
                             "jk" => $req->jk,
                             "telepon" => $req->telepon,
                             "email" => $req->email,
-                            "status" => $req->status,
                             "password" => $req->password
                      ];            
                             try {
-                                   DB::table('users')->update($update);  
+                                   DB::table('users')->where('nip', $nim)->update($update);  
                             } catch(\Illuminate\Database\QueryException $e){
                                    $errorCode = $e->errorInfo[1];
                                    if($errorCode == '1062'){
@@ -206,6 +201,6 @@ class UserController extends Controller
                             }
               }
               // dd($exist);
-              return redirect('/adminunit/');
+              return redirect('/user/');
        }
        }
